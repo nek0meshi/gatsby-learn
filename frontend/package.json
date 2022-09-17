@@ -13,7 +13,9 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prettier": "prettier -c .",
+    "prettier:fix": "prettier -w ."
   },
   "dependencies": {
     "gatsby": "^4.23.0",
