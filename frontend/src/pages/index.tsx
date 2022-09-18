@@ -5,6 +5,9 @@ const IndexPage = () => {
   return (
     <main>
       <h1>ブログ</h1>
+      <ul>
+        <li><a href="/articles">記事一覧</a></li>
+      </ul>
     </main>
   );
 };
