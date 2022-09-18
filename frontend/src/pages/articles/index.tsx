@@ -11,6 +11,7 @@ export const query = graphql`
           title
           slug
           date
+          tags
         }
       }
     }
@@ -22,7 +23,10 @@ export default function ({
 }: {
   data: { allMarkdownRemark: AllMarkdownRemark };
 }) {
+  const [searchTag, setSearchTag] = React.useState('');
+
   const tableOfContents = data.allMarkdownRemark.nodes
+    .filter((node) => !searchTag || node.frontmatter.tags.includes(searchTag))
     .sort((a, b) => (a.frontmatter.date <= b.frontmatter.date ? 1 : -1))
     .map((node) => (
       <li key={node.id}>
@@ -36,6 +40,10 @@ export default function ({
   return (
     <main>
       <h1>記事一覧</h1>
+      <label>
+        タグ検索
+        <input type="text" value={searchTag} onChange={e => setSearchTag(e.target.value)} />
+      </label>
       <ul>{tableOfContents}</ul>
     </main>
   );

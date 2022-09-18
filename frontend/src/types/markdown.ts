@@ -5,6 +5,7 @@ export interface MarkdownRemark {
     title: string;
     slug: string;
     date: string;
+    tags: string[];
   };
 }
 

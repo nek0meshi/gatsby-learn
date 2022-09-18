@@ -8,7 +8,9 @@ export default function Template({
   data: { markdownRemark: MarkdownRemark };
 }) {
   const { markdownRemark } = data;
-  const { html } = markdownRemark;
+  const { html, frontmatter } = markdownRemark;
+
+  const tags = frontmatter.tags.join(', ');
 
   return (
     <div className="blog-post-container">
@@ -17,6 +19,7 @@ export default function Template({
           className="blog-post-content"
           dangerouslySetInnerHTML={{ __html: html }}
         />
+        <span>{tags}</span>
       </div>
     </div>
   );
@@ -26,6 +29,9 @@ export const pageQuery = graphql`
   query ($id: String!) {
     markdownRemark(id: { eq: $id }) {
       html
+      frontmatter {
+        tags
+      }
     }
   }
 `;
